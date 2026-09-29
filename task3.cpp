@@ -14,4 +14,13 @@ SafeArray createArray(int size)
     return arr;
 }
 
-// добавлю остальные функции ниже
+int main()
+{
+    SafeArray myArr = createArray(5);
+    std::cout << "Size: " << myArr.size << "\n";
+
+    delete[] myArr.data;
+    myArr.data = nullptr;
+
+    return 0;
+}

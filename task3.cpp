@@ -27,21 +27,23 @@ int& getElement(SafeArray& arr, int index)
     return arr.data[index];
 }
 
+void printSafe(const SafeArray& arr)
+{
+    std::cout << "SafeArray[" << arr.size << "]: ";
+    for (int i = 0; i < arr.size; ++i)
+        std::cout << arr.data[i] << " ";
+    std::cout << "\n";
+}
+
 int main()
 {
     SafeArray myArr = createArray(5);
 
     getElement(myArr, 2) = 999;
-    std::cout << "After [2] = 999: ";
-    for (int i = 0; i < myArr.size; ++i)
-        std::cout << myArr.data[i] << " ";
-    std::cout << "\n";
+    printSafe(myArr);
 
     getElement(myArr, 10) = 123;
-    std::cout << "After [10] = 123: ";
-    for (int i = 0; i < myArr.size; ++i)
-        std::cout << myArr.data[i] << " ";
-    std::cout << "\n";
+    printSafe(myArr);
 
     delete[] myArr.data;
     myArr.data = nullptr;

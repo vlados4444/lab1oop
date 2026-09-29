@@ -42,7 +42,27 @@ void printMatrix(int** matrix, int rows, int cols,
         std::cout << "-\n";
     }
 }
+void freeMatrix(int** matrix, int rows)
+{
+    for (int i = 0; i < rows; ++i)
+        delete[] matrix[i];
+    delete[] matrix;
+}
 
+int main()
+{
+    int rows = 3, cols = 4;
+    int** grades = allocateMatrix(rows, cols);
+    fillMatrix(grades, rows, cols);
+
+    printMatrix(grades, rows, cols);
+    printMatrix(grades, rows, cols, true, "Оценки студентов");
+    printMatrix(grades, rows, cols, false, "Без рамки");
+
+    freeMatrix(grades, rows);
+    grades = nullptr;
+    return 0;
+}
 
 
 

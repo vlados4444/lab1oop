@@ -35,6 +35,28 @@ void printSafe(const SafeArray& arr)
     std::cout << "\n";
 }
 
+void reSizeArray(SafeArray& arr, int M)
+{
+    int oldSize = arr.size;
+    int* newData = new int[M]{};
+
+    int copyCount = (M < oldSize) ? M : oldSize;
+    for (int i = 0; i < copyCount; ++i)
+        newData[i] = arr.data[i];
+
+    if (M < oldSize)
+    {
+        std::cout << "Removed elements: ";
+        for (int i = M; i < oldSize; ++i)
+            std::cout << arr.data[i] << " ";
+        std::cout << "\n";
+    }
+
+    delete[] arr.data;
+    arr.data = newData;
+    arr.size = M;
+}
+
 int main()
 {
     SafeArray myArr = createArray(5);
@@ -43,6 +65,14 @@ int main()
     printSafe(myArr);
 
     getElement(myArr, 10) = 123;
+    printSafe(myArr);
+
+    std::cout << "\nResize to 3:\n";
+    reSizeArray(myArr, 3);
+    printSafe(myArr);
+
+    std::cout << "\nResize to 7:\n";
+    reSizeArray(myArr, 7);
     printSafe(myArr);
 
     delete[] myArr.data;

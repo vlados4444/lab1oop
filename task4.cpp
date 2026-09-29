@@ -9,8 +9,6 @@ int** allocateMatrix(int rows, int cols)
         matrix[i] = new int[cols]{};
     return matrix;
 }
-
-int main() { return 0; }
 void fillMatrix(int** matrix, int rows, int cols)
 {
     for (int i = 0; i < rows; ++i)
@@ -20,3 +18,32 @@ void fillMatrix(int** matrix, int rows, int cols)
             std::cin >> matrix[i][j];
     }
 }
+void printMatrix(int** matrix, int rows, int cols,
+                 bool showBorders = true,
+                 std::string title = "Matrix")
+{
+    std::cout << "\n=== " << title << " ===\n";
+    if (showBorders)
+    {
+        for (int j = 0; j < cols; ++j) std::cout << "--------";
+        std::cout << "-\n";
+    }
+    for (int i = 0; i < rows; ++i)
+    {
+        if (showBorders) std::cout << "|";
+        for (int j = 0; j < cols; ++j)
+            std::cout << std::setw(5) << matrix[i][j];
+        if (showBorders) std::cout << " |";
+        std::cout << "\n";
+    }
+    if (showBorders)
+    {
+        for (int j = 0; j < cols; ++j) std::cout << "--------";
+        std::cout << "-\n";
+    }
+}
+
+
+
+
+
